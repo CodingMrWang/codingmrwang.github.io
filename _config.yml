@@ -5,14 +5,14 @@ description: "My heart is in the work"
 header-img: img/star.jpg
 email: zexianw@andrew.cmu.edu
 keyword: "CodingMrWang,Python,Java,Crawler,Spider"
-url: "https://codingmrwang.github.io"          # your host, for absolute URL
-baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/CodingMrWang/codingmrwang.github.io.git" # you code repository
+url: "https://codingmrwang.github.io"         
+baseurl: ""      
+github_repo: "https://github.com/CodingMrWang/codingmrwang.github.io.git" 
 
 # Sidebar settings
-sidebar: true                           # whether or not using Sidebar.
+sidebar: true                           
 sidebar-about-description: "Talk is cheap, Show me your code"
-sidebar-avatar: /img/WechatIMG1.jpeg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/WechatIMG1.jpeg      
 
 
 
@@ -23,13 +23,12 @@ weibo_username:     2606791441
 github_username:    CodingMrWang
 facebook_username:  wang.wang.988373
 #jianshu_username:
-#twitter_username:   qiubaiying
+#twitter_username:   
+linkedin_username:  wangzexian
 
 
 
 
-# Build settings
-# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
 permalink: pretty
 paginate: 10
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
