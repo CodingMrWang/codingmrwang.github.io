@@ -5,14 +5,14 @@ description: "My heart is in the work"
 header-img: img/star.jpg
 email: zexianw@andrew.cmu.edu
 keyword: "CodingMrWang,Python,Java,Crawler,Spider"
-url: "https://codingmrwang.github.io"         
-baseurl: ""      
-github_repo: "https://github.com/CodingMrWang/codingmrwang.github.io.git" 
+url: "https://codingmrwang.github.io"
+baseurl: ""
+github_repo: "https://github.com/CodingMrWang/codingmrwang.github.io.git"
 
 # Sidebar settings
-sidebar: true                           
+sidebar: true
 sidebar-about-description: "Talk is cheap, Show me your code"
-sidebar-avatar: /img/WechatIMG1.jpeg      
+sidebar-avatar: /img/WechatIMG1.jpeg
 
 
 
@@ -23,7 +23,7 @@ weibo_username:     2606791441
 github_username:    CodingMrWang
 facebook_username:  wang.wang.988373
 #jianshu_username:
-#twitter_username:   
+#twitter_username:
 linkedin_username:  wangzexian
 
 
@@ -103,4 +103,4 @@ friends: [
     },
 ]
 
-theme: jekyll-theme-hacker
+theme: jekyll-theme-midnight
