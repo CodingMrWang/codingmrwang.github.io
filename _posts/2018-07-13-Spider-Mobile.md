@@ -31,10 +31,15 @@ tags:
 ### Install with pip
 
 The easiest way to install mitmproxy is to install it with pip, you can directly install with the following Command
+
 ```
 sudo pip3 install mitmproxy
 ```
+if you are using python2
 
+```
+pip install "mitmproxy==0.18.2"
+```
 ### Certificate configuration
 
 If you want to catch HTTPS requests, you have to configure the certificates, after you install mitmproxy, it will create some certificates for you, only if you trust the certificates, you could catch HTTPS requests, or you cannot catch them.
