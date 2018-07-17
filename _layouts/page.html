@@ -10,7 +10,7 @@ layout: default
                 <div class="site-heading">
                     <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
                     <!--<hr class="small">-->
-                    <span class="subheading">{{ page.description }}</span>
+                    <span class="subheading", style="color:black">{{ page.description }}</span>
                 </div>
             </div>
         </div>
@@ -183,7 +183,7 @@ layout: default
                                 </a>
                             </li>
                             {% endif %}
-                            
+
                         </ul>
                         {% if site.email %}
                             <p>✉️ {{site.email}}</p>
