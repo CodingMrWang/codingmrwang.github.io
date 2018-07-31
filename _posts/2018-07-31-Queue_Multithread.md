@@ -41,26 +41,26 @@ There are two methods to solve this problem.
 
 1. sleep for a random time when the qsize of queue is 1.
 
-```python
-def get_relationship(self):
-	if q.qsize() == 1:
-		sleep(randint(2, 4))
-	while q.qsize():
-		data = q.get()
-		...
-```
-Then, when there is only one element in the queue, the thread first finish the sleep will enter the while loop and empty the queue, then other thread would quit.
+	```python
+	def get_relationship(self):
+		if q.qsize() == 1:
+			sleep(randint(2, 4))
+		while q.qsize():
+			data = q.get()
+			...
+	```
+	Then, when there is only one element in the queue, the thread first finish the sleep will enter the while loop and empty the queue, then other thread would quit.
 
 2. Set block = Flase
-	
-```python
-def get_relationship(self):
-	while q.qsize():
-		try:
-			data = q.get(block=False)
-		except:
-			break
-```
-The default setting of get() function is block = True, so if you set block = False and the queue is empty, it will throw an exception, you need to catch the exception. Also, you can use get(0) which is almost the same with the above method.
+		
+	```python
+	def get_relationship(self):
+		while q.qsize():
+			try:
+				data = q.get(block=False)
+			except:
+				break
+	```
+	The default setting of get() function is block = True, so if you set block = False and the queue is empty, it will throw an exception, you need to catch the exception. Also, you can use get(0) which is almost the same with the above method.
 
 I prefer the second method, if there are lots of threads, some of them may sleep at the same time and sleep for the same random number would also cause the problem. So using get(block=False) or get(0) with an exception catching is a better method.
