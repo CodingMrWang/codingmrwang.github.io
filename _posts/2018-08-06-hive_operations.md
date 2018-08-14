@@ -4,7 +4,7 @@ title:      Hive operations
 subtitle:   Create, Delete, Alter
 date:       2018-08-06
 author:     CodingMrWang
-header-img: img/post-bg-swift2.jpg
+header-img: img/post-bg-swift.jpg
 catalog: true
 tags:
     - Hive
