@@ -14,7 +14,7 @@ tags:
 
 > This post is first created by [CodingMrWang](http://codingmrwang.github.io), 作者 [@Zexian Wang](http://github.com/codingmrwang) ,please keep the original link if you want to repost it.
 
-#Segment Tree
+### Segment Tree
 
 Build
 
