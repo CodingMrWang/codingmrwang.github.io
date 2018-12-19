@@ -74,3 +74,13 @@ public void modify(SegmentTreeNode root, int index, int value) {
     root.max = Math.max(root.left.max, root.right.max);
 }
 ```
+
+Time complexity
+
+```
+RangeSum: O(logN)
+Range MAX/MIN: O(logN)
+MAX/MIN: O(1) update: O(logN)
+Min value larger than a number: O(logN)
+Max value smaller than a number: O(logN)
+```
