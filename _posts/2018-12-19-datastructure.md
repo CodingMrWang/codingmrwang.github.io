@@ -84,3 +84,52 @@ MAX/MIN: O(1) update: O(logN)
 Min value larger than a number: O(logN)
 Max value smaller than a number: O(logN)
 ```
+
+### Maximum SubArray/Matrix
+
+1. Compute prefix sum
+2. Use for loop to iterate the array, keep a min of sum, use max to record sum - min to get max.
+
+Maximum SubMatrix
+
+```java
+public int maxSubmatrix(int[][] matrix) {
+    if (matrix == null || matrix.length == 0 || matrix[0] == null || matrix[0].length == 0) {
+        return 0;
+    }
+    int max = Integer.MIN_VALUE;
+	 //compute prefix sum of the matrix
+    int[][] prefixSum = getPrefix(matrix);
+	 // i is the upper bound, j is the lower bound.
+	 // compute the sum of the matrix in this j - i, then use maximum subarray to get maximum submatrix.
+    for (int i = 0; i < matrix.length; i++) {
+        for (int j = i; j < matrix[0].length; j++) {
+            int[] arr = compress(prefixSum, i, j);
+            int min = 0;
+            int sum = 0;
+            for (int k = 0; k < arr.length; k++) {
+                sum += arr[k];
+                max = Math.max(max, sum - min);
+                min = Math.min(sum, min);
+            }
+        }
+    }
+    return max;
+}
+private int[] compress(int[][] prefix, int i, int j) {
+    int[] arr = new int[prefix[0].length];
+    for (int k = 0; k < prefix[0].length; k++) {
+        arr[k] = prefix[j + 1][k] - prefix[i][k];
+    }
+    return arr;
+}
+private int[][] getPrefix(int[][] matrix) {
+    int[][] prefix = new int[matrix.length + 1][matrix[0].length];
+    for (int i = 0; i < matrix.length; i++) {
+        for (int j = 0; j < matrix[0].length; j++) {
+            prefix[i + 1][j] = prefix[i][j] + matrix[i][j];
+        }
+    }
+    return prefix;
+}
+```
