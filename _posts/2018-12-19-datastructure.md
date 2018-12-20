@@ -138,6 +138,7 @@ private int[][] getPrefix(int[][] matrix) {
 ### Longest Palindromic Substring
 
 Take each element as the middle point of the palindromic
+Time complexity: O(N^2)
 
 ```java
 public String longestPalindrome(String s) {
