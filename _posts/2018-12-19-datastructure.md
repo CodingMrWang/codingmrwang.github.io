@@ -133,3 +133,50 @@ private int[][] getPrefix(int[][] matrix) {
     return prefix;
 }
 ```
+
+
+### Longest Palindromic Substring
+
+Take each element as the middle point of the palindromic
+
+```java
+public String longestPalindrome(String s) {
+    // write your code here
+    if (s == null || s.length() == 0) {
+        return s;
+    }
+    int longest = 1;
+    int start = 0;
+    int len = 0;
+    for (int i = 0; i < s.length() - 1; i++) {
+        len = helper(s, i, i);
+        if (longest < len) {
+            longest = len;
+            start = i - len / 2;
+        }
+        len = helper(s, i, i + 1);
+        if (longest < len) {
+            longest = len;
+            start = i - len / 2 + 1;
+        }
+    }
+    return s.substring(start, start + longest);
+}
+    
+private int helper(String s, int left, int right) {
+    int len = 0;
+    while (left >= 0 && right < s.length()) {
+        if (s.charAt(left) == s.charAt(right)) {
+            len++;
+            if (left != right) {
+                len++;
+            }
+            left--;
+            right++;
+        } else {
+            return len;
+        }
+    }
+    return len;
+}
+```
