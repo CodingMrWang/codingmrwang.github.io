@@ -200,8 +200,10 @@ public List<List<Integer>> permute(int[] nums) {
     int n = nums.length;
     while (stack.size() != 0) {
         Integer last = stack.get(stack.size() - 1);
+        //back tracking
         stack.remove(stack.size() - 1);
         int next = -1;
+        //[0, 1, 2], remove 2, remove 1, add 2. [0, 2]
         for (int i = last + 1; i < n; i++) {
             if (!stack.contains(i)) {
                 next = i;
@@ -212,6 +214,7 @@ public List<List<Integer>> permute(int[] nums) {
             continue;
         }
         stack.add(next);
+        //[0, 2, 1]
         for (int i = 0; i < n; i++) {
             if (!stack.contains(i)) {
                 stack.add(i);
