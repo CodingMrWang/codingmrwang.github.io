@@ -181,3 +181,48 @@ private int helper(String s, int left, int right) {
     return len;
 }
 ```
+
+### Permutation without recursion
+
+```java
+public List<List<Integer>> permute(int[] nums) {
+    // write your code here
+    List<List<Integer>> result = new ArrayList<>();
+    List<Integer> stack = new ArrayList<>();
+    if (nums == null) {
+        return result;
+    }
+    if (nums.length == 0) {
+        result.add(stack);
+        return result;
+    }
+    stack.add(-1);
+    int n = nums.length;
+    while (stack.size() != 0) {
+        Integer last = stack.get(stack.size() - 1);
+        stack.remove(stack.size() - 1);
+        int next = -1;
+        for (int i = last + 1; i < n; i++) {
+            if (!stack.contains(i)) {
+                next = i;
+                break;
+            }
+        }
+        if (next == -1) {
+            continue;
+        }
+        stack.add(next);
+        for (int i = 0; i < n; i++) {
+            if (!stack.contains(i)) {
+                stack.add(i);
+            }
+        }
+        List<Integer> step = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            step.add(nums[stack.get(i)]);
+        }
+        result.add(step);
+    }
+    return result;
+}
+```
