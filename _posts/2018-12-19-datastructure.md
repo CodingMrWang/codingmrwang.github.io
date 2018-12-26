@@ -229,3 +229,71 @@ public List<List<Integer>> permute(int[] nums) {
     return result;
 }
 ```
+
+### Median of k sorted arrays
+
+```java
+public double findMedian(int[][] nums) {
+    // write your code here
+    int totalL = 0;
+    for (int i = 0; i < nums.length; i++) {
+        totalL += nums[i].length;
+    }
+    if (totalL == 0) {
+        return 0;
+    }
+    if (totalL % 2 != 0) {
+        return findKth(nums, totalL / 2 + 1);
+    } else {
+        return findKth(nums, totalL / 2) * 1.0 / 2 + findKth(nums, totalL / 2 + 1) * 1.0 / 2;
+    }
+}
+private int findKth(int[][] nums, int k) {
+    int start = 0;
+    int end = Integer.MAX_VALUE;
+    while (start + 1 < end) {
+        int mid = start + (end - start) / 2;
+        // this make sure the mid is in the nums array
+        if (let(nums, mid) >= k) {
+            end = mid;
+        } else {
+            start = mid;
+        }
+    }
+    if (let(nums, start) == k) {
+        return start;
+    }
+    return end;
+}
+    
+private int let(int[][] nums, int val) {
+    int sum = 0;
+    for (int i = 0; i < nums.length; i++) {
+        sum += let(nums[i], val);
+    }
+    return sum;
+}
+// get how many number in num smaller or equal to val
+private int let(int[] num, int val) {
+    if (num.length == 0) {
+        return 0;
+    }
+    int start = 0;
+    int end = num.length - 1;
+    while (start + 1 < end) {
+        int mid = start + (end - start) / 2;
+        if (num[mid] <= val) {
+            start = mid;
+        } else {
+            end = mid;
+        }
+    }
+    if (num[end] <= val) {
+        return end + 1;
+    }
+    if (num[start] <= val) {
+        return start + 1;
+    }
+    return 0;
+}
+```
