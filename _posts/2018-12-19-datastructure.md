@@ -297,3 +297,24 @@ private int let(int[] num, int val) {
     return 0;
 }
 ```
+
+### Longest Substring Without Repeating Characters
+O(N)
+
+```java
+public int lengthOfLongestSubstring(String s) {
+    // write your code here
+    int[] hash = new int[256];
+    int max = 0;
+    int j = 0;
+    for (int i = 0; i < s.length(); i++) {
+        while (j < s.length() && hash[s.charAt(j)] == 0) {
+            hash[s.charAt(j)] += 1;
+            max = Math.max(max, j - i + 1);
+            j++;
+        }
+        hash[s.charAt(i)] -= 1;
+    }
+    return max;
+}
+```
