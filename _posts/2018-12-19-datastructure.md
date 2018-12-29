@@ -318,3 +318,49 @@ public int lengthOfLongestSubstring(String s) {
     return max;
 }
 ```
+
+### Union Find
+
+```java
+int[] f;
+public ConnectingGraph2(int n) {
+    // do intialization if necessary
+    f = new int[n + 1];
+    for (int i = 0; i <= n; i++) {
+        f[i] = -1;
+    }
+}
+
+/*
+ * @param a: An integer
+ * @param b: An integer
+ * @return: nothing
+ */
+public void union(int a, int b) {
+    // write your code here
+    int a_root = find(a);
+    int b_root = find(b);
+    if (a_root == b_root) {
+        return;
+    }
+    int a_count = -f[a_root];
+    int b_count = -f[b_root];
+    f[a_root] = -(a_count + b_count);
+    f[b_root] = a_root;
+}
+private int find(int a) {
+    if (f[a] < 0) {
+        return a;
+    }
+    return f[a] = find(f[a]);
+}
+/*
+ * @param a: An integer
+ * @return: An integer
+ */
+public int query(int a) {
+    // write your code here
+    int a_root = find(a);
+    return -f[a_root];
+}
+```
