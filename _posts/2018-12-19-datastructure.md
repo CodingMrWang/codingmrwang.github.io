@@ -397,3 +397,65 @@ public int maximalRectangle(boolean[][] matrix) {
     return max;
 }
 ```
+
+### Expression evaluation
+if is num, enter num Stack directly. if is operator, see operator stack, pop all operator with higher or equal priority and do operations. For example, if current operator is +, then pop /, *, -, +. If current operator is "/", only pop * or /. If is (, just enter operator stack, if is ), pop until (.
+
+```java
+public int evaluateExpression(String[] expression) {
+    // write your code here
+    if (expression == null || expression.length == 0) {
+        return 0;
+    }
+    Map<String, Integer> operators = new HashMap<>();
+    operators.put("+", 0);
+    operators.put("-", 0);
+    operators.put("*", 1);
+    operators.put("/", 1);
+    operators.put("(", -1);
+    operators.put(")", -1);
+    Stack<Integer> numStack = new Stack<>();
+    Stack<String> operStack = new Stack<>();
+    for (int i = 0; i < expression.length; i++) {
+        if (!operators.containsKey(expression[i])) {
+            numStack.push(Integer.parseInt(expression[i]));
+        } else {
+            if (expression[i].equals("(")) {
+                operStack.push("(");
+            } else if (expression[i].equals(")")) {
+                while (!operStack.peek().equals("(")) {
+                    String oper = operStack.pop();
+                    Integer a = numStack.pop();
+                    Integer b = numStack.pop();
+                    getResult(a, b, oper, numStack);
+                }
+                operStack.pop();
+            } else {
+                while (!operStack.isEmpty() && operators.get(expression[i]) <= operators.get(operStack.peek())) {
+                    String oper = operStack.pop();
+                    getResult(numStack.pop(), numStack.pop(), oper, numStack);
+                }
+                operStack.push(expression[i]);
+            }
+        }
+    }
+    while (!operStack.isEmpty()) {
+        getResult(numStack.pop(), numStack.pop(), operStack.pop(), numStack);
+    }
+    if (numStack.isEmpty()) {
+        return 0;
+    }
+    return numStack.pop();
+}
+private void getResult(int a, int b, String oper, Stack<Integer> numStack) {
+    if (oper.equals("+")) {
+        numStack.push(a + b);
+    } else if (oper.equals("-")) {
+        numStack.push(b - a);
+    } else if (oper.equals("*")) {
+        numStack.push(a * b);
+    } else {
+        numStack.push(b / a);
+    }
+}
+```
