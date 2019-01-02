@@ -364,3 +364,36 @@ public int query(int a) {
     return -f[a_root];
 }
 ```
+
+### Monotonous stack
+When we want to get the first numbers smaller than on the left and right side of each element, we can use stack.
+
+```java
+public int maximalRectangle(boolean[][] matrix) {
+    // write your code here
+    if (matrix == null || matrix.length == 0) {
+        return 0;
+    }
+    int[][] height = new int[matrix.length][matrix[0].length];
+    int max = Integer.MIN_VALUE;
+    for (int i = 0; i < matrix.length; i++) {
+        Stack<Integer> stack = new Stack<>();
+        for (int j = 0; j <= matrix[0].length; j++) {
+            if (j < matrix[0].length) {
+                height[i][j] = matrix[i][j] ? 1 : 0;
+                if (i > 0 && height[i][j] == 1) {
+                    height[i][j] += height[i - 1][j];
+                }
+            }
+            int curr = j < matrix[0].length ? height[i][j] : Integer.MIN_VALUE;
+            while (!stack.isEmpty() && curr <= height[i][stack.peek()]) {
+                int temp = stack.pop();
+                int w = stack.isEmpty() ? -1 : stack.peek();
+                max = Math.max(max, height[i][temp] * (j - w - 1));
+            }
+            stack.push(j);
+        }
+    }
+    return max;
+}
+```
