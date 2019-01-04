@@ -531,3 +531,39 @@ private static class Point {
     }
 }
 ```
+
+# Deque
+
+### Sliding Window Maximum
+when enter the queue, if current is larger than last element, polllast because the last is not maximum for sure. For deque, if the first element is equal to nums[i - k + 1], poll it.
+
+```java
+public List<Integer> maxSlidingWindow(int[] nums, int k) {
+    // write your code here
+    if (nums == null || nums.length == 0) {
+        return null;
+    }
+    List<Integer> result = new ArrayList<>();
+    Deque<Integer> dq = new ArrayDeque<>();
+    for (int i = 0; i < k - 1; i++) {
+        enqueue(dq, nums[i]);
+    }
+    for (int i = k - 1; i < nums.length; i++) {
+        enqueue(dq, nums[i]);
+        result.add(dq.peekFirst());
+        dequeue(dq, nums[i - k + 1]);
+    }
+    return result;
+}
+private void enqueue(Deque<Integer> dq, int v) {
+    while (!dq.isEmpty() && v > dq.peekLast()) {
+        dq.pollLast();
+    }
+    dq.offer(v);
+}
+private void dequeue(Deque<Integer> dq, int v) {
+    if (dq.peekFirst() == v) {
+        dq.pollFirst();
+    }
+}
+```
