@@ -459,3 +459,75 @@ private void getResult(int a, int b, String oper, Stack<Integer> numStack) {
     }
 }
 ```
+
+# Sweep Line
+
+Divide [start, end] into [start, true] [end, false], then sort and walk through each point. record a count at the same time.
+
+### The Skyline Problem
+
+Using Sweep line, divid [start, end, height] into [start, 0, height] and [end, 1, height]. Sort the list. Also using tree map to record largest height. current height is always the largest height in the treemap. If current height is different from previous height, it means a new outline is required to be recorded. So use current index and previous index and previous height to record the previous outline.
+
+```java
+public List<List<Integer>> buildingOutline(int[][] buildings) {
+    // write your code here
+    if (buildings == null || buildings.length == 0 || buildings[0].length == 0) {
+        return null;
+    }
+    List<Point> list = new ArrayList<>();
+    for (int i = 0; i < buildings.length; i++) {
+        list.add(new Point(buildings[i][0], buildings[i][2], 0));
+        list.add(new Point(buildings[i][1], buildings[i][2], 1));
+    }
+    Collections.sort(list, new Comparator<Point>() {
+        public int compare(Point p1, Point p2) {
+            if (p1.x == p2.x) {
+                if (p1.up == p2.up) {
+                    return p2.height - p1.height;
+                }
+                return p1.up - p2.up;
+            }
+            return p1.x - p2.x;
+        }
+    });
+    TreeMap<Integer, Integer> tm = new TreeMap<>();
+    int preheight = 0;
+    int preindex = 0;
+    List<List<Integer>> result = new ArrayList<>();
+    for (Point p : list) {
+        if (p.up == 0) {
+            if(!tm.containsKey(p.height)) {
+               tm.put(p.height, 0); 
+            }
+            tm.put(p.height, tm.get(p.height) + 1);
+        } else {
+            tm.put(p.height, tm.get(p.height) - 1);
+            if (tm.get(p.height) == 0) {
+                tm.remove(p.height);
+            }
+        }
+        
+        int currheight = tm.isEmpty() ? 0 : tm.lastKey();
+        if (preheight != currheight) {
+            if (preindex != p.x && preheight != 0) {
+                List<Integer> step = new ArrayList<>();
+                step.add(preindex);
+                step.add(p.x);
+                step.add(preheight);
+                result.add(step);
+            }
+            preheight = currheight;
+            preindex = p.x;
+        }
+    }
+    return result;
+}
+private static class Point {
+    int x, height, up;
+    Point(int x, int height, int up) {
+        this.x = x;
+        this.height = height;
+        this.up = up;
+    }
+}
+```
