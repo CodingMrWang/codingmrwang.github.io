@@ -567,3 +567,41 @@ private void dequeue(Deque<Integer> dq, int v) {
     }
 }
 ```
+
+### Submatrix Sum
+
+use presum, `int[][] presum = new int[n + 1][m + 1]`
+
+`sum[i to j] = presum[j + 1] - presum[i]`
+
+```java
+public int[][] submatrixSum(int[][] matrix) {
+    int n = matrix.length;
+    int m = matrix[0].length;
+    int[][] presum = new int[n + 1][m + 1];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            presum[i + 1][j + 1] = matrix[i][j] + presum[i][j + 1] + presum[i + 1][j] - presum[i][j];
+        }
+    }
+    int[][] result = new int[2][2];
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j <= n; j++) {
+            Map<Integer, Integer> map = new HashMap<>();
+            for (int k = 0; k < m + 1; k++) {
+                int diff = presum[j][k] - presum[i][k];
+                if (map.containsKey(diff)) {
+                    result[0][0] = i;
+                    result[0][1] = map.get(diff);
+                    result[1][0] = j - 1;
+                    result[1][1] = k - 1;
+                    return result;
+                } else {
+                    map.put(diff, k);
+                }
+            }
+        }
+    }
+    return result;
+}
+```
