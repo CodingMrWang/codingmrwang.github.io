@@ -368,6 +368,28 @@ public int query(int a) {
 ### Monotonous stack
 When we want to get the first numbers smaller than on the left and right side of each element, we can use stack.
 
+Description
+
+Given a 2D boolean matrix filled with False and True, find the largest rectangle containing all True and return its area.
+
+Example
+
+Given a matrix:
+
+```
+[
+  [1, 1, 0, 0, 1],
+  [0, 1, 0, 0, 1],
+  [0, 0, 1, 1, 1],
+  [0, 0, 1, 1, 1],
+  [0, 0, 0, 0, 1]
+]
+```
+return 6.
+
+Transfer into 1D array.
+![](https://ws4.sinaimg.cn/large/006tNc79ly1fyz1rwn9efj30du0buq35.jpg)
+
 ```java
 public int maximalRectangle(boolean[][] matrix) {
     // write your code here
