@@ -662,3 +662,123 @@ public int backPack(int m, int[] A) {
     return 0;
 }
 ```
+
+###  Maximum Gap
+
+```
+Description
+Given an unsorted array, find the maximum difference between
+the successive elements in its sorted form.
+Return 0 if the array contains less than 2 elements.
+```
+
+Idea:
+
+此题用bucket sort的原理： 最大的gap必定大于等于平均gap！所以，用平均gap作为bucket size，在同一个bucket里面的元素之间的gap必定小于average gap不予考虑，只考虑相邻有元素的bucket。 最大的gap一定是某一对bucket后一个bucket的最小减去前一个bucket最大。
+因为第一个bucket和最后一个bucket一定存在min和max，所以pre可以设为0， 然后看存在min的idx，如何存在min，一定存在max，这样就可以遍历所有存在max和min的了。
+
+```
+public int maximumGap(int[] nums) {
+    // write your code here
+    int max = Integer.MIN_VALUE;
+    int min = Integer.MAX_VALUE;
+    for (int i : nums) {
+        max = Math.max(max, i);
+        min = Math.min(min, i);
+    }
+    int size = (max - min) / nums.length + 1;
+    int num = (max - min) / size + 1;
+    int[] bucketMax = new int[num];
+    int[] bucketMin = new int[num];
+    for (int i = 0; i < num; i++) {
+        bucketMin[i] = -1;
+        bucketMax[i] = -1;
+    }
+    for (int i = 0; i < nums.length; i++) {
+        int idx = (nums[i] - min) / size;
+        bucketMin[idx] = bucketMin[idx] == -1 ? nums[i] : Math.min(bucketMin[idx], nums[i]);
+        bucketMax[idx] = bucketMax[idx] == -1 ? nums[i] : Math.max(bucketMax[idx], nums[i]);
+    }
+    int pre = 0;
+    int result = 0;
+    for (int i = 0; i < num; i++) {
+        if (bucketMin[i] == -1) {
+            continue;
+        }
+        result = Math.max(result, bucketMin[i] - bucketMax[pre]);
+        pre = i;
+    }
+    return result;
+}
+```
+
+### Build Post Office
+
+idea:
+
+一组数组，求他们所有元素距离一个已知target距离之和
+
+比如：
+[1, 3, 6, 9] 距离 8之和
+
+Step 1. 求数组presum [1, 4, 10, 19]
+
+Step 2, 二分法找到8的位置，这里8位置是2，那么presum(2)是10，那么左边距离总和为 3 * 8 - 10， 右边presum为 19 - 10，距离总和为 9 - 8，这样总体和为14 + 1 = 15。
+
+首先初始化求presum，之后每一次求距离总和只需要logn时间
+
+```
+public int shortestDistance(int[][] grid) {
+    // write your code here
+    List<Integer> x = new ArrayList<>();
+    List<Integer> y = new ArrayList<>();
+    for (int i = 0; i < grid.length; i++) {
+        for (int j = 0; j < grid[0].length; j++) {
+            if (grid[i][j] == 1) {
+                x.add(i);
+                y.add(j);
+            }
+        }
+    }
+    Collections.sort(x);
+    Collections.sort(y);
+    List<Integer> sumx = new ArrayList<>();
+    List<Integer> sumy = new ArrayList<>();
+    sumx.add(0);
+    sumy.add(0);
+    for (int i = 1; i <= x.size(); i++) {
+        sumx.add(sumx.get(i - 1) + x.get(i - 1));
+        sumy.add(sumy.get(i - 1) + y.get(i - 1));
+    }
+    int result = Integer.MAX_VALUE;
+    for (int i = 0; i < grid.length; i++) {
+        for (int j = 0; j < grid[0].length; j++) {
+            if (grid[i][j] == 0) {
+                int xCost = getCost(x, sumx, i);
+                int yCost = getCost(y, sumy, j);
+                result = Math.min(result, xCost + yCost);
+            }
+        }
+    }
+    return result;
+}
+private int getCost(List<Integer> x, List<Integer> sum, int pos) {
+    int left = 0, right = x.size() - 1;
+    while (left + 1 < right) {
+        int mid = left + (right - left) / 2;
+        if (x.get(mid) <= pos) {
+            left = mid;
+        } else {
+            right = mid;
+        }
+    }
+    int idx = 0;
+    if (x.get(left) <= pos) {
+        idx = left;
+    } else {
+        idx = right;
+    }
+    return (idx + 1) * pos - sum.get(idx + 1) - (x.size() - idx - 1) * pos + sum.get(x.size()) - sum.get(idx + 1);
+}
+```
+
