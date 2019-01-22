@@ -636,7 +636,7 @@ dp[i - 1][j - current value] || dp[i - 1][j]
 - left: take current value
 - right: do not take current value
 
-```
+```java
 public int backPack(int m, int[] A) {
     // write your code here
     if (A == null || A.length == 0) {
@@ -677,7 +677,7 @@ Idea:
 此题用bucket sort的原理： 最大的gap必定大于等于平均gap！所以，用平均gap作为bucket size，在同一个bucket里面的元素之间的gap必定小于average gap不予考虑，只考虑相邻有元素的bucket。 最大的gap一定是某一对bucket后一个bucket的最小减去前一个bucket最大。
 因为第一个bucket和最后一个bucket一定存在min和max，所以pre可以设为0， 然后看存在min的idx，如何存在min，一定存在max，这样就可以遍历所有存在max和min的了。
 
-```
+```java
 public int maximumGap(int[] nums) {
     // write your code here
     int max = Integer.MIN_VALUE;
@@ -727,7 +727,7 @@ Step 2, 二分法找到8的位置，这里8位置是2，那么presum(2)是10，�
 
 首先初始化求presum，之后每一次求距离总和只需要logn时间
 
-```
+```java
 public int shortestDistance(int[][] grid) {
     // write your code here
     List<Integer> x = new ArrayList<>();
@@ -782,3 +782,49 @@ private int getCost(List<Integer> x, List<Integer> sum, int pos) {
 }
 ```
 
+### [Number of Longest Increasing Subsequence](https://www.lintcode.com/problem/number-of-longest-increasing-subsequence)
+
+A really great dp question, use two array, one keep the lis, one keep the count to achieve this lis.
+
+
+if lis[i] == lis[j] + 1, count[i] += count[j]
+
+if lis[i] < lis[j] + 1, count[i] = count[j]
+
+```java
+public int findNumberOfLIS(int[] nums) {
+    // Write your code here
+    if (nums == null || nums.length == 0) {
+        return 0;
+    }
+    int[] dp = new int[nums.length];
+    dp[0] = 1;
+    int[] count = new int[nums.length];
+    count[0] = 1;
+    int max = 1;
+    for (int i = 1; i < dp.length; i++) {
+        dp[i] = 1;
+        count[i] = 1;
+        for (int j = 0; j < i; j++) {
+            if (nums[i] > nums[j]) {
+                if (dp[i] == dp[j] + 1) {
+                    count[i] = count[i] + count[j];
+                } else if (dp[i] < dp[j] + 1) {
+                    count[i] = count[j];
+                    dp[i] = dp[j] + 1;
+                }
+                if (dp[i] >= max) {
+                    max = dp[i];
+                }
+            }
+        }
+    }
+    int result = 0;
+    for (int i = 0; i < dp.length; i++) {
+        if (dp[i] == max) {
+            result += count[i];
+        }
+    }
+    return result;
+}
+```
