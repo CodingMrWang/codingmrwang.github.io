@@ -828,3 +828,12 @@ public int findNumberOfLIS(int[] nums) {
     return result;
 }
 ```
+
+
+### Search in Rotated Sorted Array II
+
+If there are duplicate numbers in the array
+
+1. Compare nums[mid], nums[left], if nums[left] < nums[mid], left is sorted. if target >= nums[left] && target < nums[mid], search(nums, target, left, mid - 1). else search(nums, target, mid + 1, right).
+2. If nums[mid] < nums[left], right is sorted. if target > nums[mid] and target <= nums[right], search(nums, target, mid + 1, right). else search(nums, target, left, mid - 1).
+3. If nums[mid] == nums[left], we compare nums[mid] and nums[right], if nums[mid] != nums[right], we search right side, if nums[mid] == nums[right], we need to search both side.
