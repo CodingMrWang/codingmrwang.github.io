@@ -837,3 +837,59 @@ If there are duplicate numbers in the array
 1. Compare nums[mid], nums[left], if nums[left] < nums[mid], left is sorted. if target >= nums[left] && target < nums[mid], search(nums, target, left, mid - 1). else search(nums, target, mid + 1, right).
 2. If nums[mid] < nums[left], right is sorted. if target > nums[mid] and target <= nums[right], search(nums, target, mid + 1, right). else search(nums, target, left, mid - 1).
 3. If nums[mid] == nums[left], we compare nums[mid] and nums[right], if nums[mid] != nums[right], we search right side, if nums[mid] == nums[right], we need to search both side.
+
+
+### Construct Binary Tree from Preorder and Inorder Traversal
+
+Idea:
+
+- [3, 9, 20, 15, 7]
+- [9, 3, 15, 20, 7]
+
+3 will be the root, then we search in the inorder array. 3 is the second elements. So the first two elements in the inorder array are left sub tree. Also, the first two elements in the preorder array are left subtree. So 20 is the first element in the right sub tree. Then 20 is the root of right subtree.
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        if (preorder == null || inorder == null || preorder.length == 0 || inorder.length == 0) {
+            return null;
+        }
+        return build(preorder, inorder, 0, 0, inorder.length - 1);
+    }
+    private TreeNode build(int[] preorder,
+                           int[] inorder,
+                           int pIdx,
+                           int iIdx,
+                           int iEnd) {
+        if (pIdx >= preorder.length) {
+            return null;
+        }
+        if (iIdx == iEnd) {
+            return new TreeNode(preorder[pIdx]);
+        }
+        TreeNode node = new TreeNode(preorder[pIdx]);
+        int i = 0;
+        for (; i + iIdx < iEnd; i++) {
+            if (inorder[iIdx + i] == preorder[pIdx]) {
+                break;
+            }
+        }
+        if (i > 0) {
+            node.left = build(preorder, inorder, pIdx + 1, iIdx, iIdx + i - 1);
+        }
+        if (i + iIdx < iEnd) {
+            node.right = build(preorder, inorder, pIdx + i + 1, iIdx + i + 1, iEnd);
+        }
+        return node;
+    }
+}
+```
