@@ -893,3 +893,45 @@ class Solution {
     }
 }
 ```
+
+### Shortest Subarray with Sum at Least K
+
+idea:
+
+- Using deque
+
+```java
+while (!deque.isEmpty() && pre[i] - pre[deque.getFirst()] >= K) {
+    min = Math.min(i - deque.pollFirst(), min);
+}
+//保持最小的值在第一位
+while (!deque.isEmpty() && pre[i] <= pre[deque.getLast()]) {
+    deque.pollLast();
+}
+```
+
+```
+class Solution {
+    public int shortestSubarray(int[] A, int K) {
+        Deque<Integer> deque = new LinkedList<>();
+        int[] pre = new int[A.length + 1];
+        for (int i = 1; i < pre.length; i++) {
+            pre[i] = pre[i - 1] + A[i - 1];
+        }
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < pre.length; i++) {
+            while (!deque.isEmpty() && pre[i] - pre[deque.getFirst()] >= K) {
+                min = Math.min(i - deque.pollFirst(), min);
+            }
+            while (!deque.isEmpty() && pre[i] <= pre[deque.getLast()]) {
+                deque.pollLast();
+            }
+            deque.offer(i);
+        }
+        if (min == Integer.MAX_VALUE) {
+            return -1;
+        }
+        return min;
+    }
+}
+```
