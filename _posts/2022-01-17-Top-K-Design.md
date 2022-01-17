@@ -110,3 +110,9 @@ Top K Service
 ### Get top K
 ![](https://drive.google.com/uc?id=159fxvM0k22Z6P3yJN9OkG1qYOM_O2dV1)
 
+
+Helpful links:
+- https://soulmachine.gitbooks.io/system-design/content/cn/bigdata/heavy-hitters.html
+- https://www.1point3acres.com/bbs/thread-159538-1-1.html
+- https://www.youtube.com/watch?v=kx-XDoPjoHw&t=1068s
+- https://tinyurl.com/qqkp274
