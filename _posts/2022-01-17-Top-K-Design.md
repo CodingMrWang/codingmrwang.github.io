@@ -107,6 +107,12 @@ Top K Service
 	- Generates files of specified size
 7. Finally, save map reduce result to storage as well.
 
+### Why we have Data paritioner & partitioner processor before Map-Reduce job.
+
+1. Handle hot partion.
+2. Reduce Map-Reduce job.
+3. Need to save to HDFS.
+
 ### Get top K
 ![](https://drive.google.com/uc?id=159fxvM0k22Z6P3yJN9OkG1qYOM_O2dV1)
 
