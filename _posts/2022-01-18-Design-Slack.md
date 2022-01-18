@@ -86,11 +86,13 @@ User table(SQL)
 
 | Id(Shard Key) | name | status | timezone | team |
 |---------------|------|--------|----------|------|
+||||||
 
 Chat table (Cassandra)
 
 | user_id | chat_id | status | join date | last view time |
 |---------|---------|--------|-----------|----------------|
+||||||
 
 last view time can be used to find last view msg.
 
@@ -98,6 +100,7 @@ Message table(DynamoDB)
 
 | (chat_room_id)PartitionKey | timestamp-msg_id(Sort key) | Msg id | Sender id | message |
 |----------------------------|----------------------------|--------|-----------|---------|
+||||||
 
 We don't find message by message id, we only find message by chat room. Get all messages from a room and retrieve only a certain period of time messages.
 
