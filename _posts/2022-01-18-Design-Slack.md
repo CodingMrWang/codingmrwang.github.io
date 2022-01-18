@@ -85,19 +85,19 @@ Message search service: manage messaging search index and lookup
 User table(SQL)
 
 |Id(Shard Key)|name|status|timezone|team|
-|-------------|----|------|--------|----|
+|---|---|---|---|---|
 
 Chat table (Cassandra)
 
 |user_id|chat_id|join date|last view time|
-|-------|-------|---------|--------------|
+|---|---|---|---|
 
 last view time can be used to find last view msg.
 
 Message table(DynamoDB)
 
 |(chat_room_id)PartitionKey|timestamp-msg_id(Sort key)|Msg id|Sender id|message|
-|-------------------------|--------------------------|------|---------|-------|
+|---|---|---|---|---|
 
 We don't find message by message id, we only find message by chat room. Get all messages from a room and retrieve only a certain period of time messages.
 
@@ -106,7 +106,7 @@ Channel Table(Redis)
 Since we will have a lot of reads at each moment, using database could be slow, we can use redis to cache frequent read info
 
 |key|value|
-|---|-----|
+|---|---|
 |user_id|David: {unread_msg: 10, last_msg_preview: hey, timestamp: 22343}|
 |  |Company Chat: {unread_msg: 10, last_msg_preview: office, timestamp: 1234|
 |---|---|
