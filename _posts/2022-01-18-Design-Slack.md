@@ -4,7 +4,7 @@ title:      Design Slack
 subtitle:   Chat App
 date:       2022-01-18
 author:     CodingMrWang
-header-img: img/post-bg-swift.jpg
+header-img: img/post-bg-slack.png
 catalog: true
 tags:
     - System Design
