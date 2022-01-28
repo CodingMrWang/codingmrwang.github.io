@@ -66,6 +66,7 @@ tags:
 Tradeoff made here, we want strong consistency higher than latency. One user won't make many reservations per day.
 
 ### Schema
+
 |Reservation||
 |---|---|
 |id|primary key|
