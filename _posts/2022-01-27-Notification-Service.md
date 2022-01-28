@@ -78,7 +78,7 @@ Message queues: SQS/Kafka
 ## Something more
 
 How to handle spammer: register subscriber, sign agreement.
-Duplicate messages: Frontend remove duplicates
+Duplicate messages: Frontend remove duplicates, but subscriber also need to handle duplicates
 
 ## Useful link:
 - [https://www.youtube.com/watch?v=TYO849M8Q5U](https://www.youtube.com/watch?v=TYO849M8Q5U)
