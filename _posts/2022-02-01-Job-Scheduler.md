@@ -4,7 +4,7 @@ title:      Distributed Job Scheduler
 subtitle:   Task scheduling
 date:       2022-02-01
 author:     CodingMrWang
-header-img: img/post-bg-time.png
+header-img: img/post-bg-time.jpeg
 catalog: true
 tags:
     - System Design
