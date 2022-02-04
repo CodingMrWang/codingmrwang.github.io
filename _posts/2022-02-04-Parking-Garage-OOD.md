@@ -17,7 +17,7 @@ tags:
 **Application controller** : First object that will receive calls on application events.
 
 ```java
-public enum ParkingLotController { //singleton facade controller
+public class ParkingLotController { //singleton facade controller
 	INSTANCE;
 	public ParkingLotController() {
 		VehicleSensorPool.INSTANCE.register(VehicleEventListenerPool.INSTANCE);
@@ -65,7 +65,7 @@ Sensors run on their own threads. We have the flexibility of having sensors:list
 Further note: SensorData is inner for enhanced encapsulation.
 
 ```java
-public enum VehicleSensorPool {
+public class VehicleSensorPool {
 	INSTANCE;
 	private List<VehicleSensor> vehicleSensors;
 	public VehicleSensorPool() {
@@ -111,7 +111,7 @@ public class VehicleSensor implements Runnable {
 	}
 }
 
-public enum VehicleEventListenerPool implements VehicleEventListener { //composite singleton
+public class VehicleEventListenerPool implements VehicleEventListener { //composite singleton
 	INSTANCE;
 	private List<VehicleEventListener> vehicleEventListeners;
 	public VehicleEventListenerPool() {
