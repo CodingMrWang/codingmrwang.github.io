@@ -220,7 +220,7 @@ public interface VehicleValidationStrategy {
 ```
 
 
-## Useful link:
+**Useful link**
 - [https://leetcode.com/discuss/interview-question/124739/Parking-Lot-Design-Using-OO-Design](https://leetcode.com/discuss/interview-question/124739/Parking-Lot-Design-Using-OO-Design)
 - [https://github.com/Matthew-Feng/parkinglot/tree/master/src/main/java/com/matthew/feng](https://github.com/Matthew-Feng/parkinglot/tree/master/src/main/java/com/matthew/feng)
 
