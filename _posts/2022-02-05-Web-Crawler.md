@@ -4,7 +4,7 @@ title:      Design Web Crawler
 subtitle:   web spiders
 date:       2022-02-05
 author:     CodingMrWang
-header-img: img/post-bg-time.jpeg
+header-img: img/post-bg-crawler.jpeg
 catalog: true
 tags:
     - System Design

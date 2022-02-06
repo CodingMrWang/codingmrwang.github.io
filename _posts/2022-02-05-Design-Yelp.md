@@ -4,7 +4,7 @@ title:      Design Yelp
 subtitle:   Proximity Server
 date:       2022-02-05
 author:     CodingMrWang
-header-img: img/post-bg-time.jpeg
+header-img: img/post-bg-yelp.png
 catalog: true
 tags:
     - System Design
