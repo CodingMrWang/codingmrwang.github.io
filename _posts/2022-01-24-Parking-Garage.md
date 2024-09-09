@@ -99,7 +99,7 @@ Tradeoff made here, we want strong consistency higher than latency. One user won
 
 
 ## Diagram
-![](https://drive.google.com/uc?id=1jhXc6u_n9HVmE7FvClRE4GD6o1IVpBwU)
+![](https://drive.google.com/thumbnail?id=1jhXc6u_n9HVmE7FvClRE4GD6o1IVpBwU&sz=w1000)
 
 
 ## Useful link:
