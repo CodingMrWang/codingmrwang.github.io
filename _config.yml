@@ -12,7 +12,7 @@ github_repo: "https://github.com/CodingMrWang/codingmrwang.github.io.git"
 # Sidebar settings
 sidebar: true
 sidebar-about-description: "Talk is cheap, Show me your code"
-sidebar-avatar: /img/me.JPG
+sidebar-avatar: /img/me.jpg
 
 
 
