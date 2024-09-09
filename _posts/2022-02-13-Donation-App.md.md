@@ -83,7 +83,7 @@ Notification Service: send notification to customers
 We can use relational database and put donation and payment attempt into the same db to enforce transaction, but according to single responsibility, we use two micro services to handle those data. we can use dynamodb or relational db. But since our query is simple, we can use dynamodb.
 
 ## Diagram
-![](https://drive.google.com/uc?id=17VeeB7X0tadcwiICsNBRxtt8Mp2JLX1L)
+![](https://drive.google.com/thumbnail?id=17VeeB7X0tadcwiICsNBRxtt8Mp2JLX1L&sz=w1000)
 
 ## Workflow
 
