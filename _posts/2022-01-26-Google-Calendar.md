@@ -96,7 +96,7 @@ tags:
 
 
 ## Diagram
-![](https://drive.google.com/uc?id=1ofKs9DwFSTaYEl5WKAKrtLiCWDkHkyai)
+![](https://drive.google.com/thumbnail?id=1ofKs9DwFSTaYEl5WKAKrtLiCWDkHkyai&sz=w1000)
 
 ## Topics
 - How to handle reoccuring meeting
