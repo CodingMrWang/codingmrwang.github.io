@@ -39,7 +39,7 @@ A web crawler is a software program that browses the websites in a methodical an
 15B * 100KB = 1.5 petabytes
 
 ## Diagram
-![](https://drive.google.com/uc?id=1-up7370TNlZx106m0MFsLOrWmP7Uq_9y)
+![](https://drive.google.com/thumbnail?id=1-up7370TNlZx106m0MFsLOrWmP7Uq_9y&sz=w1000)
 
 **Domain name resolution**: Before contacting a Web server, a Web crawler must use the Domain Name Service (DNS) to map the Web server’s hostname into an IP address. DNS name resolution will be a big bottleneck for our crawlers given the huge number of URLs we will be working with. To avoid repeated requests, we can start caching DNS results by building our local DNS server.
 
