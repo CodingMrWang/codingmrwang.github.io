@@ -120,7 +120,7 @@ It is ineffecient to range search on both latitude and longitude. Use Geohash in
 
 
 ## Diagram
-![](https://drive.google.com/uc?id=1N1opDmqL6gwmozQyCBCatbjW1NFas49b)
+![](https://drive.google.com/thumbnail?id=1N1opDmqL6gwmozQyCBCatbjW1NFas49b&sz=w1000)
 
 ## Data sharding
 - Shard by the first 4 chars of geoHash
