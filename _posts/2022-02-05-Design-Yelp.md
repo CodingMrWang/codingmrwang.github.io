@@ -46,7 +46,7 @@ return: a json containing information about a list of businesses matching the se
 
 ## Diagram
 
-![](https://drive.google.com/uc?id=1g8KvK83u_LOP-puxIKYm3WCjFRD7mRNg)
+![](https://drive.google.com/thumbnail?id=1g8KvK83u_LOP-puxIKYm3WCjFRD7mRNg&sz=w1000)
 
 ## Database
 This will be a read heavy but write light application, users will search restaurants everyday but they won't always update restaurant info.
@@ -63,7 +63,7 @@ while this solution can run slow if grids have a lot of places since they may no
 
 - Dynamic size grids: We can limit the size of each grid to 500. Use a tree to store grids, if there are more than 500 places in the grid, split it into multiple children.
 
-![](https://drive.google.com/uc?id=1q-hAs4dRqLFuvidS6qsiLyqRnspv_CoZ)
+![](https://drive.google.com/thumbnail?id=1q-hAs4dRqLFuvidS6qsiLyqRnspv_CoZ&sz=w1000)
 
 **How we build a QuadTree?** We start with root and break it down into four nodes and distribute locations among them, we keep repeating the process with each child node until there are no nodes left with more than 500 locations.
 **How we find the grid for a given location?** We will start with the root node and search downward to find our required node. at each step, we will see if the current node we are visiting has children, if it has, we will move to the child node that contains our desired location and repeat this process. If the node doesn't have any children, then that is our desired node.
